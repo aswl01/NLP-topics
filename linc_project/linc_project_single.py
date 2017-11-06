@@ -116,7 +116,7 @@ def predict(ldamodel, dictionary, query):
 if __name__ == '__main__':
     flag = sys.argv[1]
     num_topics = 10
-    num_words = 4
+    num_words = 10
     if flag == 'train':
         dialogs = sys.argv[2]
         doc_set = read_in_docs(dialogs)
@@ -127,7 +127,9 @@ if __name__ == '__main__':
         ldamodel.save('models/lda.model')
         dictionary.save('models/corpus.dict')
         print('Finish saving ldamodel and dictionary')
-        print(ldamodel.print_topics(num_topics=num_topics, num_words=num_words))
+        topics = ldamodel.print_topics(num_topics=num_topics, num_words=num_words)
+        for topic in topics:
+            print('Topic #' + str(topic[0]) + ': ' + topic[1])
     elif flag == 'test':
         if not os.path.exists('models/lda.model'):
             print('You need to run train mode first or put ldamodel in the same directory')
