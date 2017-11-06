@@ -20,3 +20,5 @@ For test query:
 python3 linc_project_new5.py test <your query>
   
 The output would be top 10 topics list. The first token of each sublist is the topic id and the second part is the weighted words descripting the topic.
+
+I have spent about 3 hours to get the whole project up and run from scratch and spent about 4 hours to train 3 different versions of the ldamodel. I spent most of my time to wait for the result and find a way to deal with the memory issue and how to speed up the whole read in and training process. The time of predict a new result is just about one second.
