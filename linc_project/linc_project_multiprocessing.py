@@ -72,11 +72,11 @@ def predict(ldamodel, dictionary, stemmed_tokens):
 
 
 if __name__ == '__main__':
-    dialogs = sys.argv[1]
-    flag = sys.argv[2]
+    flag = sys.argv[1]
     num_topics = 10
     num_words = 4
     if flag == 'train':
+        dialogs = sys.argv[2]
         doc_set = read_in_docs(dialogs)
         print('Finish reading')
         # work_queue = []
@@ -108,20 +108,20 @@ if __name__ == '__main__':
         print('mission complete!')
 
         ldamodel, dictionary = train(stemmed_docs, num_topics)
-        print(ldamodel.print_topic(num_topics=num_topics, num_words=num_words))
+        print(ldamodel.print_topics(num_topics=num_topics, num_words=num_words))
         if not os.path.exists('models'):
             os.mkdir('models')
         ldamodel.save('models/lda.model')
         dictionary.save('models/corpus.dict')
         print('Finish saving ldamodel and dictionary')
     elif flag == 'test':
-        if not os.path.exists('lda.model'):
+        if not os.path.exists('models/lda.model'):
             print('You need to run train mode first or put ldamodel in the same directory')
         else:
             print('reading ldamodel from pretrain model')
             ldamodel = models.LdaModel.load('models/lda.model')
-            dictionary = corpora.Dictionary.load('model/corpus.dict')
-            query = ''
+            dictionary = corpora.Dictionary.load('models/corpus.dict')
+            query = sys.argv[2]
             stemmed_tokens = data_preprocess(query, tokenizer, stop_words, p_stemmer, lem)
             predict(ldamodel, dictionary, stemmed_tokens)
     else:
