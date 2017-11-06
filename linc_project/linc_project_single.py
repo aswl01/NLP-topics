@@ -114,11 +114,11 @@ def predict(ldamodel, dictionary, query):
 
 
 if __name__ == '__main__':
-    dialogs = sys.argv[1]
-    flag = sys.argv[2]
+    flag = sys.argv[1]
     num_topics = 10
     num_words = 4
     if flag == 'train':
+        dialogs = sys.argv[2]
         doc_set = preprocess(dialogs)
         print('Finish preprocessing')
         ldamodel, dictionary = train(doc_set, num_topics)
@@ -134,7 +134,7 @@ if __name__ == '__main__':
         else:
             ldamodel = models.LdaModel.load('models/lda.model')
             dictionary = corpora.Dictionary.load('models/corpus.dict')
-            query = 'which ubuntu options I can use for http questions'
+            query = sys.argv[2]
             predict(ldamodel, dictionary, query)
     else:
         print('flag can either be train or test')
