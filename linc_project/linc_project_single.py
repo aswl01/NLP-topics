@@ -8,7 +8,7 @@ from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 import nltk
 
-def preprocess(dialogs):
+def read_in_docs(dialogs):
     doc_set = []
     for folder in os.listdir(dialogs):
         folder_path = os.path.join(dialogs, folder)
@@ -119,8 +119,8 @@ if __name__ == '__main__':
     num_words = 4
     if flag == 'train':
         dialogs = sys.argv[2]
-        doc_set = preprocess(dialogs)
-        print('Finish preprocessing')
+        doc_set = read_in_docs(dialogs)
+        print('Finish reading documents')
         ldamodel, dictionary = train(doc_set, num_topics)
         if not os.path.exists('models'):
             os.mkdir('models')
