@@ -1,4 +1,4 @@
-# NLP-topics
+# NLP-topic model
 Latent Dirichlet allocation (LDA) is used to solve this problem, a topic model that generates topics based on word frequency from a set of documents. Since the data sets are huge ,costing too much RAM and  time to come to a result. I choose one tenth of the data as my training samples to show my code can return a reasonable result. 
 
 The code can run on python3.6, with nltk, gensim libraries. 
