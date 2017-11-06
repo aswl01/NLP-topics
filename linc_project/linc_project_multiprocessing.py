@@ -68,7 +68,8 @@ def train(stemmed_docs, num_topics=10):
 
 def predict(ldamodel, dictionary, stemmed_tokens):
     query_bow = dictionary.doc2bow(stemmed_tokens)
-    print(ldamodel.get_document_topics(query_bow))
+    topic = ldamodel.get_document_topics(query_bow)[0]
+    print('This new query belongs to topic No.' + str(topic[0]) + ', with probability ' + str(topic[1]))
 
 
 if __name__ == '__main__':
