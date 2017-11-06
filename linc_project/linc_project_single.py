@@ -110,8 +110,8 @@ def predict(ldamodel, dictionary, query):
 
     query_bow = dictionary.doc2bow(stemmed_tokens)
 
-    print('This new query belongs to topic No.' + str(ldamodel.get_document_topics(query_bow)[0][0]) + ', with probability ' + str(ldamodel.get_document_topics(query_bow)[0][1]))
-
+    topic = ldamodel.get_document_topics(query_bow)[0]
+    print('This new query belongs to topic No.' + str(topic[0]) + ', with probability ' + str(topic[1]))
 
 if __name__ == '__main__':
     flag = sys.argv[1]
